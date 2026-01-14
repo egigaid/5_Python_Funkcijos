@@ -518,9 +518,73 @@ print(f"pradinis masyvas: {masyvas}")
 print(f"masyvas be pasikartojimų: {originalussk}")
 
 
+# 19. Sukurkite funkciją kuri priima tekstą ir atspausdina tekste daugiausiai pasikartojantį simbolį.
+print("---- 19. Uzdavinys ----------------")
+#text.lower().count(i)
+#tekstas.lower()
+
+def maxsimbolis(tekstas):
+    tekstas = tekstas.lower().replace(" ", "")
+    kiekis = {}
+    for i in tekstas:
+        if i in kiekis:
+            kiekis[i] += 1
+        else:
+            kiekis[i] = 1
+
+    max_kiekis = 0
+    daugiausiai = ""
+
+    for i in kiekis:
+        if kiekis[i] > max_kiekis:
+            max_kiekis = kiekis[i]
+            daugiausiai = i
+
+    print(f"Dažniausias simbolis: '{daugiausiai}', pasikartoja {max_kiekis} kartus.")
 
 
 
+maxsimbolis("Labas rytas l l l")
+maxsimbolis("Šiandien labai graži diena")
+
+
+# 20. Sukurkite funkciją kuri priima tekstą ir atspausdina jame esantį ilgiausią žodį.
+print("---- 20. Uzdavinys ----------------")
+
+tekstas = "Šiandien labai graži diena"
+
+def maxzodis(tekstas):
+    tekstas = tekstas.replace(".", "").replace(",", "")
+    zodziai = tekstas.split()
+    print(zodziai)
+
+    ilgiausiaszodis = ""
+    ilgis = 0
+    for i in zodziai:
+        if len(i) > len(ilgiausiaszodis):
+            ilgiausiaszodis = i
+            ilgis = len(i)
+
+    print(f'ilgiausias zodis: "{ilgiausiaszodis}" turi {ilgis} simbolius')
+
+
+tekstas = "Šiandien, labai...... graži diena"
+maxzodis(tekstas)
+
+print('--------------')
+
+def maxzodis2(tekstas):
+    tekstas = tekstas.replace(".", "").replace(",", "")
+    ilgiausias = max(tekstas.split(), key=len)
+    print(f'Ilgiausias zodis: "{ilgiausias}"')
+
+
+tekstas = "Šiandien, labai...... graži diena"
+maxzodis2(tekstas)
+
+# 1. Parašykite funkciją, kurios argumentas būtų tekstas,
+# kuris būtų atspausdinamas konsolėje pridedant “---” pradžioje ir gale. PVZ (---labas---)
+print("---- 1. Uzdavinys Sunkesni----------------")
 
 
 
