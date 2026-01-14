@@ -301,6 +301,10 @@ print(masyvas)
 print(f"Sveikųjų skaičių yra: {sveikiejisk(masyvas)}")
 
 
+# (jei pavyks, patobulinkite, kad funkcija priimtų antrą parametrą True/False kuris nuspręstų ar
+# spausdins tik sveikuosius skaičius ar skaičius su kableliu.
+
+
 def sveikiejisk2(masyvas):
     for i in masyvas:
         if type(i) is int:
@@ -309,3 +313,214 @@ def sveikiejisk2(masyvas):
 
 masyvas = [1, 2.5, 3.5, 10, 5]
 sveikiejisk2(masyvas)
+
+# (jei pavyks, patobulinkite, kad funkcija priimtų antrą parametrą True/False kuris nuspręstų ar
+# spausdins tik sveikuosius skaičius ar skaičius su kableliu.
+print("---- 13. Uzdavinys ----------------+ true/false 2 variantas")
+
+def printskaicius(masyvas, sveikas=True):
+    for i in masyvas:
+        if sveikas:
+            if isinstance(i, int) and not isinstance(i, bool): #sveikas skaicius int ir ne boolean bool
+                print(i, end=" ")
+        else:
+            if isinstance(i, float):  #skaicius su kableliu float
+                print(i, end=" ")
+    print()
+
+
+masyvas3 = [1, 2.5, 3.5, 10, 3.1, "Labas", True, 7]
+
+print("Sveikieji skaičiai:")
+printskaicius(masyvas3, True)
+
+print(f'Skaičiai su kableliu:')
+printskaicius(masyvas3, False)
+
+
+print("---- 13. Uzdavinys ----------------+ true/false 3variantas")
+
+
+def printskaicius2 (masyvas, sveikas=True):
+    rezultatas = []
+    for i in masyvas:
+        if sveikas:                                           # ieškome sveikųjų
+            if isinstance(i, int) and not isinstance(i, bool):
+                rezultatas.append(i)
+        else:                                                       # ieškome su kableliu
+            if isinstance(i, float):
+                rezultatas.append(i)
+
+    return rezultatas
+
+
+# Naudojimas:
+masyvas4 = [1, 2.5, 3.5, 10, 3.1, "Labas", True, 7]
+
+sveiki = printskaicius2(masyvas4, True)
+su_kableliu = printskaicius2(masyvas4, False)
+
+print(f"Sveiki skaiciai: {sveiki}")  # Rezultatas: [1, 10, 7]
+print(f"Su kableliu: {su_kableliu}")  # Rezultatas: [2.5, 3.8]
+
+# 14. Sukurkite funkciją word_count kuri priimtų textą ir gražintų kiek jame yra žodžių.
+print("---- 14. Uzdavinys ----------------")
+
+def word_count (sakinys):
+    tarpai = 0
+    for i in sakinys:
+        if i == " ":
+            tarpai += 1
+    zodziai = tarpai + 1
+    return zodziai
+
+
+sakinys = "Šiandien labai graži diena"
+print(sakinys)
+tekstas = word_count(sakinys)
+print(f'kiek yra zodziu tekste: {tekstas}')
+
+sakinys = "Labas, mama"
+print(sakinys)
+tekstas = word_count(sakinys)
+print(f'kiek yra zodziu tekste: {tekstas}')
+
+# 15. Sukurkite funkciją kuri priima du parametrus. Skaičių masyvą ir boolean.
+# Funkcija gražina prafiltruotą masyvą.
+# Kai antras parametras True/tik poriniais skaičiais, False/tik neporiniais skaičiais.
+print("---- 15. Uzdavinys ----------------")
+
+def porinis_neporinis (masyvas, porinis=True):
+    rezultatas = []
+    for i in masyvas:
+        if isinstance(i, int) and not isinstance(i, bool):      #tikrinam ar ne tekstas ar boolean
+            if porinis:                                           # ieškome poriniu
+                if i % 2 == 0:
+                    rezultatas.append(i)
+            else:                                                       # ieškome likusiu neporiniu
+                if i % 2 != 0:
+                    rezultatas.append(i)
+
+    return rezultatas
+
+masyvas = [1, 2, 3, 4, 5, "Labas", True]
+print(masyvas)
+porinis = porinis_neporinis(masyvas,porinis=True)
+print(f'poriniai skaiciai: {porinis}')
+
+masyvas = [1, 2, 3, 4, 5, "Labas", True]
+print(masyvas)
+neporinis = porinis_neporinis(masyvas,porinis=False)
+print(f'neporiniai skaiciai: {neporinis}')
+
+print("--------------be teksto ir bolean tikrinimo---------")
+
+def porinis_neporinis (masyvas, porinis=True):
+    rezultatas = []
+    for i in masyvas:
+        if porinis:                                           # ieškome poriniu
+            if i % 2 == 0:
+                rezultatas.append(i)
+        else:                                                       # ieškome likusiu neporiniu
+            if i % 2 != 0:
+                rezultatas.append(i)
+
+    return rezultatas
+
+masyvas = [1, 2, 3, 4, 5]
+print(masyvas)
+porinis = porinis_neporinis(masyvas,porinis=True)
+print(f'poriniai skaiciai: {porinis}')
+
+masyvas = [1, 2, 3, 4, 5]
+print(masyvas)
+neporinis = porinis_neporinis(masyvas,porinis=False)
+print(f'neporiniai skaiciai: {neporinis}')
+
+
+# 16. Sukurkite funkciją number_is_prime. Funkcija priima skaičių, gražina True/False ar skaičius pirminis.
+print("---- 16. Uzdavinys ----------------")
+
+def number_is_prime(skaicius):
+    if skaicius < 2:
+        print(f'{skaicius} skaicius nepirminis, nes maziau uz 2')   #mazesni uz 2 iskart ne pirminis
+    pirminis = True
+    for i in range(2, skaicius):                                    #ciklas dalina is visu skaiciu ir tikrina ar be liekanos
+        if skaicius % i == 0:
+            print(f'{skaicius} skaicius nepirminis, nes dalinasi is {i}')                #jei be liekanos - nepirminis
+            pirminis = False                                        #priskiriam, kad nepirminis false
+            break
+    if pirminis:                                                    #jei lieka true, tai nerado dalikliu be liekanos, tai pirminis
+        print(f'{skaicius} skaicius pirminis')
+
+
+
+
+number_is_prime(8)
+number_is_prime(10)
+number_is_prime(13)
+
+
+print("---- 16. Uzdavinys ----------------su return")
+
+def number_is_prime(skaicius):
+    if skaicius < 2:
+        return False                                               #mazesni uz 2 iskart ne pirminis
+    for i in range(2, skaicius):                                    #ciklas dalina is visu skaiciu ir tikrina ar be liekanos
+        if skaicius % i == 0:
+            return False                                           #priskiriam, kad nepirminis false
+
+    return True
+
+skaicius = 7
+print(f'{skaicius} pirminis {number_is_prime(skaicius)}')
+skaicius = 10
+print(f'{skaicius} pirminis {number_is_prime(skaicius)}')
+
+# 17. Sukurkite funkciją kuri priima du argumentus. Gražina pirmąjį skaičių pakeltą laipsniu tokiu kaip antras skaičius.
+print("---- 17. Uzdavinys ----------------")
+
+def pakeltas_laipsniu (skaicius, laipsnis):
+    rezultatas = skaicius ** laipsnis
+    return rezultatas
+
+sk1 = 2
+sk2 = 100
+
+pakelimas = pakeltas_laipsniu(sk1, sk2)
+print(f'skaicius {sk1} pakeltas {sk2} lygu {pakelimas}')
+
+
+# 18. Sukurkite funkciją kuri priima skaičių masyvą ir gražina tik skirtingus elementus. (panašiai kaip sql distinct)
+print("---- 18. Uzdavinys ---------------- issaugotas originalus skaiciu eiliskumas masyve")
+
+def skirtingi_skaiciai(skmasyvas):
+    rezultatas = []
+    for i in skmasyvas:
+        if i not in rezultatas:
+            rezultatas.append(i)
+    return rezultatas
+
+
+masyvas = [1, 4, 10, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+originalussk = skirtingi_skaiciai(masyvas)
+print(f"pradinis masyvas: {masyvas}")
+print(f"masyvas be pasikartojimų: {originalussk}")
+
+
+print("---- 18. Uzdavinys ----------------2variantas: skaiciai isrikiuojami didejimo tvarka")
+def skirtingi_skaiciai2(skmasyvas):
+    return list(set(skmasyvas))
+
+masyvas = [1, 4, 10, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+originalussk = skirtingi_skaiciai2(masyvas)
+print(f"pradinis masyvas: {masyvas}")
+print(f"masyvas be pasikartojimų: {originalussk}")
+
+
+
+
+
+
+
+
