@@ -586,5 +586,87 @@ maxzodis2(tekstas)
 # kuris būtų atspausdinamas konsolėje pridedant “---” pradžioje ir gale. PVZ (---labas---)
 print("---- 1. Uzdavinys Sunkesni----------------")
 
+def prideti(tekstas):
+    print(f'---{tekstas}---')
+
+tekstas = "Labas"
+prideti(tekstas)
+tekstas = "Šiandien labai graži diena"
+prideti(tekstas)
+
+# 2. Sugeneruokite atsitiktinį stringą iš raidžių ir skaičių (10 simbolių).
+# Atspausdinkite simbolius stulpeliu. Jei tai skaičius apgaubkite “ [ 7 ]”.
+# Jei skaičiai eina keli iš eilės, apgaubkite juos kartu. [75].
+# (apačioje yra funkcija, ją nusikopijuokite ir paleiskite, ji sugeneruos stringą, su kuriuo dirbsite)
+
+print("---- 2. Uzdavinys Sunkesni----------------")
+
+#Funkcija skirta naudoti 2-am sunkesniam uždaviniui.
+def generate_rnd_str(length):
+  symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890"
+  text = ""
+  for i in range(length):
+    text += symbols[random.randint(0,len(symbols) -1)]
+  return text
+
+generate_rnd_str(10)
+print(generate_rnd_str(10))
+print("-------spausdinam stringa stulpeliu")
+
+stringas = generate_rnd_str(10)
+print(stringas)
+for i in stringas:
+    print(i)
+
+print("-------skaicius i [] skliaustus")
+stringas = generate_rnd_str(10)
+print(stringas)
+for i in stringas:
+    if i.isdigit():
+        print(f'[{i}]')
+    else:
+        print(i)
+
+print("-------kelis paeiliui einancius skaicius i [] skliaustus eiluteje")
+
+stringas = generate_rnd_str(10)
+print(stringas)
+
+rezultatas = ""
+keli_skaiciai = False
+
+for i in stringas:
+    if i.isdigit():
+        if not keli_skaiciai:
+            rezultatas += "["
+            keli_skaiciai = True
+        rezultatas += i
+    else:
+        if keli_skaiciai:
+            rezultatas += "]"
+            keli_skaiciai = False
+        rezultatas += i
+
+if keli_skaiciai:
+    rezultatas += "]"
+
+print(rezultatas)
 
 
+print("-------kelis paeiliui einancius skaicius i [] skliaustus eiluteje")
+
+stringas = generate_rnd_str(10)
+print(stringas)
+skaiciai = ""
+
+for i in stringas:
+    if i.isdigit():
+        skaiciai += i
+    else:
+        if skaiciai:
+            print(f"[{skaiciai}]")
+            skaiciai = ""               # nunulinam kitai grupei
+
+        print(i)
+if skaiciai:
+    print(f"[{skaiciai}]")
